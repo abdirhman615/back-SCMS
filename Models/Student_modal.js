@@ -48,7 +48,7 @@ const StudentModal = mongoose.model("Student",StudentSchema)
 const STDRegValidate = (userData) => {
     const user = joi.object({
   
-    STD_id: joi.string().required(),
+    STD_id: joi.number().required(),
     Stdname: joi.string().required(),
     STD_Pass: joi.string().required().min(3),
     phone: joi.string().required(),

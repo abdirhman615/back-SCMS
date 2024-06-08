@@ -16,6 +16,17 @@ GETReplyRouter.get('/', async (req, res) => {
 ])
     res.json({AllReply})
 })
+
+GETReplyRouter.get('/forStd/:id', async (req, res) => {
+  const AllReply = await ReplyModal.find({}).populate([{
+      path:"Complain_id",
+      model:"Complain",
+      select:"Description Complain_date Status"
+  
+  }
+])
+  res.json({AllReply})
+})
 GETReplyRouter.get('/:id', async (req, res) => {
   const Replybyid = await ReplyModal.findById()
   res.json({ Replybyid })
@@ -23,6 +34,11 @@ GETReplyRouter.get('/:id', async (req, res) => {
 
 POSTReplyRouter.post('/', async (req, res) => {
   try {
+    const allReply=await ReplyModal.find()
+  
+  const generate=(6004)+allReply.length
+  req.body.Reply_ID=generate
+  // console.log(generate)
     const newReply = new ReplyModal(req.body)
     await newReply.save()
     res.send({ status: (200), message: 'successfully Add' })

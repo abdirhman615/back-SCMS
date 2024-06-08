@@ -17,6 +17,10 @@ GETFacultyRouter.get('/:id', async (req, res) => {
 
 POSTFacultyRouter.post('/', async (req, res) => {
   try {
+    const allFaculty=await FacultyModal.find()
+  
+  const generate=(1005)+allFaculty.length
+  req.body.FAC_ID=generate
     const newFaculty = new FacultyModal(req.body)
     await newFaculty.save()
     res.send({ status: (200), message: 'successfully Add' })

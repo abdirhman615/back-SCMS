@@ -39,6 +39,7 @@ const loginRouter = async (req, res) => {
       {
         id: usergetdata._id,
         username: usergetdata.username,
+        Role:"admin"
         // Role:usergetdata.Role
       },
      "acbfa14fb74b48e273b6a4e911ed9fd7a9f5a3355ceda4ac0b68fa42b2527097niofh89nnspjfhusf"

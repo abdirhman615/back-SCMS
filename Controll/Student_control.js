@@ -32,9 +32,14 @@ GETStudentRouter.get('/:id', async (req, res) => {
 
 
 POSTStudentRouter.post('/', async (req, res) => {
+  const allStudent=await StudentModal.find()
+  const generate=(5004)+allStudent.length
+req.body.STD_id=generate
   try {
     const { error } = STDRegValidate(req.body)
     if (error) return res.json(error.message)
+
+     
 
     const newuSTD = new StudentModal(req.body)
     const salt = await bcrypt.genSalt(10)

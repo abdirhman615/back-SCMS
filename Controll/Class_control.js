@@ -17,6 +17,10 @@ GETClassRouter.get('/:id', async (req, res) => {
 
 POSTClassRouter.post('/', async (req, res) => {
   try {
+    const allClass=await ClassModal.find()
+  
+    const generate=(3000)+allClass.length
+    req.body.Class_ID=generate
     const newClass = new ClassModal(req.body)
     await newClass.save()
     res.send({ status: (200), message: 'successfully Add' })

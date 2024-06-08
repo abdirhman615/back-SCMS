@@ -17,14 +17,18 @@ App.use(cors({ origin: ['http://localhost:5173','http://localhost:5174',,'https:
 // const contectRouter = require('./Router/contectRouter')
  const loginRouter = require('./Router/LoginRouter')
  const STDloginRouter = require('./Router/STDLoginRouter')
+// const ReplyModal = require('./Models/Reply_modal')
 
 App.listen(5000, () => {
   console.log('server started')
 })
 // localhost:3000/
-App.get('/', (req, res) => {
+App.get('/', async(req, res) => {
+  
   res.json('Ku so dawaaw Serverkena')
 })
+
+
 
  App.use('/faculty', FacultyRouter)
  App.use('/department', departmentRouter)

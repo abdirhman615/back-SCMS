@@ -25,6 +25,9 @@ GETdepartmentRouter.get('/:id', async (req, res) => {
 
 POSTdepartmentRouter.post('/', async (req, res) => {
   try {
+    const alldepartment=await departmentModal.find()
+    const generate=(2004)+alldepartment.length
+  req.body.DEP_ID=generate
     const newdepartment = new departmentModal(req.body)
     await newdepartment.save()
     res.send({ status: (200), message: 'successfully Add' })
