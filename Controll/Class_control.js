@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 const express = require('express')
 const GETClassRouter = express.Router()
+const GETClassRouterbyid = express.Router()
 const POSTClassRouter = express.Router()
 const DELETEClassRouter = express.Router()
 const PUTClassRouter = express.Router()
@@ -10,8 +11,8 @@ GETClassRouter.get('/', async (req, res) => {
   const AllClass = await ClassModal.find()
   res.json({ AllClass })
 })
-GETClassRouter.get('/:id', async (req, res) => {
-  const Classbyid = await ClassModal.findById()
+GETClassRouterbyid.get('/:id', async (req, res) => {
+  const Classbyid = await ClassModal.findById(req.params.id)
   res.json({ Classbyid })
 })
 
@@ -58,4 +59,4 @@ DELETEClassRouter.delete('/:id', async (req, res) => {
   }
 })
 
-module.exports = { GETClassRouter, DELETEClassRouter, PUTClassRouter, POSTClassRouter }
+module.exports = { GETClassRouter,GETClassRouterbyid, DELETEClassRouter, PUTClassRouter, POSTClassRouter }

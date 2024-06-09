@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 const express = require('express')
 const GETStudentRouter = express.Router()
+const GETStudentRouterbyid = express.Router()
 const POSTStudentRouter = express.Router()
 const DELETEStudentRouter = express.Router()
 const PUTStudentRouter = express.Router()
@@ -25,10 +26,22 @@ GETStudentRouter.get('/', async (req, res) => {
 //   const AllStudent = await StudentModal.find()
 //   res.json({ AllStudent })
 })
-GETStudentRouter.get('/:id', async (req, res) => {
-  const Studentbyid = await StudentModal.findById()
-  res.json({ Studentbyid })
-})
+// GETStudentRouter.get('/:id', async (req, res) => {
+//   const Studentbyid = await StudentModal.findById()
+//   res.json({ Studentbyid })
+// })
+GETStudentRouterbyid.get('/:id', async (req, res) => {
+  try {
+    const Studentbyid = await StudentModal.findById(req.params.id);
+    if (!Studentbyid) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+    res.json({ Studentbyid });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 
 
 POSTStudentRouter.post('/', async (req, res) => {
@@ -98,4 +111,4 @@ DELETEStudentRouter.delete('/:id', async (req, res) => {
   }
 })
 
-module.exports = { GETStudentRouter, DELETEStudentRouter, PUTStudentRouter, POSTStudentRouter }
+module.exports = { GETStudentRouter,GETStudentRouterbyid, DELETEStudentRouter, PUTStudentRouter, POSTStudentRouter }

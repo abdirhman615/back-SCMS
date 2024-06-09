@@ -1,8 +1,9 @@
 const express = require('express')
 const ComplainRouter = express.Router()
-const { GETComplainRouter, POSTComplainRouter, DELETEComplainRouter, PUTComplainRouter } = require('../Controll/Complain_control')
+const { GETComplainRouter,GETComplainRouterbyid, POSTComplainRouter, DELETEComplainRouter, PUTComplainRouter } = require('../Controll/Complain_control')
 
 ComplainRouter.get('/', GETComplainRouter)
+ComplainRouter.get('/:id', GETComplainRouterbyid)
 
 ComplainRouter.post('/', POSTComplainRouter)
 

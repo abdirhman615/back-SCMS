@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 const express = require('express')
 const GETReplyRouter = express.Router()
+const GETReplyRouterbyid = express.Router()
 const POSTReplyRouter = express.Router()
 const DELETEReplyRouter = express.Router()
 const PUTReplyRouter = express.Router()
@@ -17,19 +18,33 @@ GETReplyRouter.get('/', async (req, res) => {
     res.json({AllReply})
 })
 
-GETReplyRouter.get('/forStd/:id', async (req, res) => {
-  const AllReply = await ReplyModal.find({}).populate([{
-      path:"Complain_id",
-      model:"Complain",
-      select:"Description Complain_date Status"
+// GETReplyRouter.get('/forStd/:id', async (req, res) => {
+//   const AllReply = await ReplyModal.find({}).populate([{
+//       path:"Complain_id",
+//       model:"Complain",
+//       select:"Description Complain_date Status"
   
+//   }
+// ])
+//   res.json({AllReply})
+// })
+GETReplyRouterbyid.get('/:id', async (req, res) => {
+  try {
+    const Complainid = req.params.id;
+
+    // Find complaints for the student with the given ID
+    const Reply = await ReplyModal.find({ Complain_id: Complainid });
+    
+    if (Reply.length === 0) {
+      return res.status(404).json({ message: "No Reply found for the student" });
+    }
+
+    res.json({ Reply });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-])
-  res.json({AllReply})
-})
-GETReplyRouter.get('/:id', async (req, res) => {
-  const Replybyid = await ReplyModal.findById()
-  res.json({ Replybyid })
+  // const Replybyid = await ReplyModal.findById(req.params.id)
+  // res.json({ Replybyid })
 })
 
 POSTReplyRouter.post('/', async (req, res) => {
@@ -77,4 +92,4 @@ DELETEReplyRouter.delete('/:id', async (req, res) => {
   }
 })
 
-module.exports = { GETReplyRouter, DELETEReplyRouter, PUTReplyRouter, POSTReplyRouter }
+module.exports = { GETReplyRouter,GETReplyRouterbyid, DELETEReplyRouter, PUTReplyRouter, POSTReplyRouter }

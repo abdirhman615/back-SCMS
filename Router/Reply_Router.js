@@ -1,8 +1,9 @@
 const express = require('express')
 const ReplyRouter = express.Router()
-const { GETReplyRouter, POSTReplyRouter, DELETEReplyRouter, PUTReplyRouter } = require('../Controll/Reply_control')
+const { GETReplyRouter,GETReplyRouterbyid, POSTReplyRouter, DELETEReplyRouter, PUTReplyRouter } = require('../Controll/Reply_control')
 
 ReplyRouter.get('/', GETReplyRouter)
+ReplyRouter.get('/:id', GETReplyRouterbyid)
 
 ReplyRouter.post('/', POSTReplyRouter)
 

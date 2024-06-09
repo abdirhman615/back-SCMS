@@ -1,6 +1,8 @@
 
 const { UserModal,LoginValidate } = require("../Models/Users_modal");
 const {StudentModal,STDLoginValidate } = require("../Models/Student_modal");
+const ComplainModal = require('../Models/Complain_modal')
+
 const bcrypt=require('bcrypt')
 let jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -18,6 +20,9 @@ const STDloginRouter = async (req, res) => {
     // find user data
     const SDTgetdata = await StudentModal.findOne({
         Email: req.body.Email,
+    });
+    const COMgetdata = await ComplainModal.findOne({
+        _id: req.body._id,
     });
     if (!SDTgetdata)
       return res.status(401).send({
@@ -39,12 +44,16 @@ const STDloginRouter = async (req, res) => {
     const token = jwt.sign(
       {
         id: SDTgetdata._id,
+        // _id: COMgetdata._id,
         Email: SDTgetdata.Email,
+        Stdname: SDTgetdata.Stdname,
+        STD_id: SDTgetdata.STD_id,
         Role:"student"
        
       },
      "acbfa14fb74b48e273b6a4e911ed9fd7a9f5a3355ceda4ac0b68fa42b2527097niofh89nnspjfhusf"
     );
+    
     res.status(200).header('token', token).json({
       status: true,
       message: 'successfully logged in',
