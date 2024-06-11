@@ -3,19 +3,19 @@ const mongoose = require("mongoose")
 const ComplainSchema = new mongoose.Schema({
 Student_id:{
     type:mongoose.Schema.Types.ObjectId,
-     ref:"Student",
+     ref:"Student,department,Class",
     required:true
 },
-department_id:{
-    type:mongoose.Schema.Types.ObjectId,
-     ref:"department",
-    required:true
-},
-Class_id:{
-    type:mongoose.Schema.Types.ObjectId,
-     ref:"Class",
-    required:true
-},
+// department_id:{
+//     type:mongoose.Schema.Types.ObjectId,
+//      ref:"department",
+//     required:true
+// },
+// Class_id:{
+//     type:mongoose.Schema.Types.ObjectId,
+//      ref:"Class",
+//     required:true
+// },
 Description:{
     type:String,
     required:true

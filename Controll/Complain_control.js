@@ -10,21 +10,33 @@ const {StudentModal,STDRegValidate} = require('../Models/Student_modal')
 
 GETComplainRouter.get('/', async (req, res) => {
     const AllComplain = await ComplainModal.find().populate([{
-        path:"department_id",
-        model:"department",
-        select:"departmentname"
+    //     path:"Student_id",
+    //     model:"department",
+    //     select:"departmentname"
     
-    },
-    {
-        path:"Class_id",
-        model:"Class",
-        select:"Classname"
+    // },
+    // {
+    //     path:"Class_id",
+    //     model:"Class",
+    //     select:"Classname"
     
-    },
-    {
+    // },
+    
         path:"Student_id",
         model:"Student",
-        select:"Stdname phone Address Gender Email"
+        select:"Stdname phone Address Gender Email department_id Class_id",
+        populate: [
+          {
+              path: "department_id",
+              model: "department",
+              select: "departmentname"
+          },
+          {
+              path: "Class_id",
+              model: "Class",
+              select: "Classname"
+          }
+      ]
     
     },
 ])
