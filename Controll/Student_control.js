@@ -46,7 +46,7 @@ GETStudentRouterbyid.get('/:id', async (req, res) => {
 
 POSTStudentRouter.post('/', async (req, res) => {
   const allStudent=await StudentModal.find()
-  const generate=(5004)+allStudent.length
+  const generate=(5011)+allStudent.length
 req.body.STD_id=generate
   try {
     const { error } = STDRegValidate(req.body)

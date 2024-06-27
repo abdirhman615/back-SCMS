@@ -27,22 +27,17 @@ usersRouter.get('/:id', async (req, res) => {
 })
 
 usersRouter.post('/', async (req, res) => {
-//   try {
-//     const { error } = UserRegValidate(req.body)
-//     if (error) return res.json(error.message)
-
-//     const newuser = new UserModal(req.body)
-//     const salt = await bcrypt.genSalt(10)
-//     newuser.Password = await bcrypt.hash(newuser.Password, salt)
-//     await newuser.save()
-
-//     res.send({ status: (200), message: 'successfully Add' })
-//   } catch (error) {
-//     console.log(error.message)
-//   }
+  
 
   try {
     //validation
+ 
+  
+ const allUser=await UserModal.find()
+  const generate=(4005)+allUser.length
+req.body.USER_ID=generate
+console.log("generate",USER_ID)
+
     const { error } = UserRegValidate(req.body);
     if (error) return res.status(405).send(error.message);
     //post data

@@ -40,7 +40,7 @@ const UserModal = mongoose.models.users || mongoose.model('users', userSchema)
 const UserRegValidate = (userData) => {
   const user = joi.object({
 
-    USER_ID: joi.string().required(),
+    USER_ID: joi.number().required(),
     username: joi.string().required(),
     Password: joi.string().required().min(3),
     usertype: joi.string().required(),
