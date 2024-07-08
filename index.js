@@ -6,7 +6,7 @@ App.use(express.json())
 const DbConnect = require('./DbConfig')
 DbConnect()
 // App.use(cors())
-App.use(cors({ origin: ['http://localhost:5173','http://localhost:5174','https://back-scms.vercel.app','https://scms-front.vercel.app'] }))
+App.use(cors({ origin: ['http://localhost:5173','http://localhost:5173/admin','https://back-scms.vercel.app','https://scms-front.vercel.app'] }))
  const FacultyRouter = require('./Router/Faculty_Router')
  const departmentRouter = require('./Router/department_Router')
  const ClassRouter = require('./Router/Class_Router')
@@ -18,6 +18,7 @@ App.use(cors({ origin: ['http://localhost:5173','http://localhost:5174','https:/
  const loginRouter = require('./Router/LoginRouter')
  const STDloginRouter = require('./Router/STDLoginRouter')
 // const ReplyModal = require('./Models/Reply_modal')
+const DashboardSummary = require('./Router/dashboardSummary')
 
 App.listen(5000, () => {
   console.log('server started')
@@ -40,5 +41,6 @@ App.get('/', async(req, res) => {
 // App.use('/contect', contectRouter)
  App.use('/Login', loginRouter)
  App.use('/STDLogin', STDloginRouter)
+ App.use("/summary",DashboardSummary)
 
 module.exports = App
