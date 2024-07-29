@@ -4,6 +4,8 @@ const cors = require('cors')
 const App = express()
 App.use(express.json())
 const DbConnect = require('./DbConfig')
+const {AuthernticateRoute}=require('./Router/AutherncationMiddleWare')
+
 DbConnect()
 // App.use(cors())
 App.use(cors({ origin: ['http://localhost:5173','http://localhost:5173/admin','https://back-scms.vercel.app','https://scms-front.vercel.app','https://scms-front.vercel.app/admin'] }))

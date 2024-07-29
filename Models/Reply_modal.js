@@ -1,14 +1,14 @@
 const mongoose = require("mongoose")
 
 const ReplySchema = new mongoose.Schema({
-    Reply_ID:{
-        type:String,
-        required:true,
-        unique: true
-    },
-    Complain_id:{
+ Reply_ID:{
+    type:String,
+    required:true,
+    unique: true
+ },
+ Complain_id:{
     type:mongoose.Schema.Types.ObjectId,
-     ref:"Complain",
+    ref:"Complain",
     required:true
 },
 Message:{
