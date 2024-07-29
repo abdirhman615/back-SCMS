@@ -8,7 +8,7 @@ const {AuthernticateRoute}=require('./Router/AutherncationMiddleWare')
 
 DbConnect()
 // App.use(cors())
-App.use(cors({ origin: ['http://localhost:5173','http://localhost:5173/admin','https://back-scms.vercel.app','https://scms-front.vercel.app/admin'] }))
+App.use(cors({ origin: ['http://localhost:5173','http://localhost:5173/admin','https://back-scms.vercel.app','https://scms-front.vercel.app/admin',] }))
  const FacultyRouter = require('./Router/Faculty_Router')
  const departmentRouter = require('./Router/department_Router')
  const ClassRouter = require('./Router/Class_Router')
